@@ -1,0 +1,8 @@
+.cabecalho {
+	background-image: url(/sisac-web/resources/images/backgroundCabecalho.jpg);
+	background-repeat: repeat-x;
+}
+
+#frmVeiculo:layoutUnitNorth {
+    background-color: green;
+}

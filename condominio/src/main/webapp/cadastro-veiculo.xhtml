@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:view encoding="ISO-8859-1">
+        <h:head>
+            <link href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+            <title>:SISAC:</title>
+        </h:head>
+        <h:body>
+            <h:form id="frmVeiculo">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" resizable="false" closable="false">
+                   <table style="text-align: right; width: 100%" cellpadding="0"
+                               cellspacing="0">
+                            <tr>
+                                <td>
+                                    <p:outputLabel value=""/>
+                                        <p:commandLink
+                                            style="color: #6495ED; font-weight: bold; font-size: 16px; font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;"
+                                            value="SAIR" ajax="false"
+                                            action="#{managedBeanFuncionarioCondomino.desautenticar}" />
+                                    </td>
+                            </tr>
+                        </table>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" resizable="false" size="250">
+                    <p:menu>
+                        <p:menuitem value="Funcion&aacute;rio/Cond&ocirc;mino" outcome="lista-funcionario-condomino.xhtml"/>
+                        <p:menuitem value="Visitante" outcome="lista-visitante.xhtml"/>
+                        <p:menuitem value="Ve&iacute;culo" outcome="lista-veiculo.xhtml"/>
+                         <p:menuitem value="Reserva" outcome="lista-reserva.xhtml"/>
+                         <p:menuitem value="Edital" outcome="lista-edital.xhtml"/>
+                         <p:menuitem value="Ocorr&ecirc;ncia" outcome="lista-ocorrencia.xhtml"/>
+                    </p:menu>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <p:panel  style="border: 0px">
+                            <p:growl id="msgs" showDetail="true"/>
+                            <p:panel id="pnlPessoaFuncionarioCondomino">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel for="nomeProprietario" value="Nome do Proprietário:"/>
+                                    <p:selectOneMenu id="nomeProprietario" value="#{managedBeanVeiculo.veiculo.pessoa.id}">
+                                        <f:selectItem itemLabel="--Selecione--" itemValue=""/>
+                                        <f:selectItems value="#{managedBeanVeiculo.pessoas}" />
+                                        <p:ajax listener="#{managedBeanVeiculo.atualizarPessoa()}" update="frmVeiculo:optLblBloco frmVeiculo:optLblApartamento" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Bloco:"/>
+                                    <p:outputLabel id="optLblBloco" value="#{managedBeanVeiculo.veiculo.pessoa.bloco}"/>
+                                    <p:outputLabel value="Apto:"/>
+                                    <p:outputLabel id="optLblApartamento" value="#{managedBeanVeiculo.veiculo.pessoa.apartamento}"/>
+                                    <p:outputLabel value="Marca: *"/>
+                                    <p:inputText  value="#{managedBeanVeiculo.veiculo.marca}"/>
+                                    <p:outputLabel value="Modelo: *"/>
+                                    <p:inputText  value="#{managedBeanVeiculo.veiculo.modelo}"/>
+                                    <p:outputLabel value="Ano: *"/>
+                                    <p:inputMask mask="9999" value="#{managedBeanVeiculo.veiculo.ano}"/>
+                                    <p:outputLabel value="Placa: *"/>
+                                    <p:inputMask  mask="a**-9999" value="#{managedBeanVeiculo.veiculo.placa}"/>
+                                </h:panelGrid>
+                                <p:spacer height="10px"/>
+                                <h:panelGrid columns="2">
+                                    <p:commandButton rendered="#{not empty acessoEscrita}"  value="Salvar"
+                                                     action="#{managedBeanVeiculo.submitAcao()}" ajax="false">
+                                        <f:param name="idParam" value="#{managedBeanVeiculo.veiculo.id}"></f:param>
+                                        <f:param name="acaoParam" value="4"></f:param>
+                                    </p:commandButton>
+                                    <p:button outcome="lista-veiculo.xhtml" value="Cancelar"/>
+                                </h:panelGrid>
+                            </p:panel>
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+           </h:form>     
+        </h:body>
+    </f:view>
+</html>

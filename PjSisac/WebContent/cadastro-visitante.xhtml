@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:view encoding="ISO-8859-1">
+        <h:head>
+            <link href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+            <title>:SISAC:</title>
+        </h:head>
+        <h:body>
+            <h:form id="frmPessoaVisitante">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" resizable="false" closable="false">
+                   <table style="text-align: right; width: 100%" cellpadding="0"
+                               cellspacing="0">
+                            <tr>
+                                <td>
+                                    <p:outputLabel value=""/>
+                                        <p:commandLink
+                                            style="color: #6495ED; font-weight: bold; font-size: 16px; font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;"
+                                            value="SAIR" ajax="false"
+                                            action="#{managedBeanFuncionarioCondomino.desautenticar}" />
+                                    </td>
+                            </tr>
+                        </table>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" resizable="false" size="250">
+                    <p:menu>
+                        <p:menuitem value="Funcion&aacute;rio/Cond&ocirc;mino" outcome="lista-funcionario-condomino.xhtml"/>
+                        <p:menuitem value="Visitante" outcome="lista-visitante.xhtml"/>
+                        <p:menuitem value="Ve&iacute;culo" outcome="lista-veiculo.xhtml"/>
+                         <p:menuitem value="Reserva" outcome="lista-reserva.xhtml"/>
+                         <p:menuitem value="Edital" outcome="lista-edital.xhtml"/>
+                         <p:menuitem value="Ocorr&ecirc;ncia" outcome="lista-ocorrencia.xhtml"/>
+                    </p:menu>
+                </p:layoutUnit>
+               
+                <p:layoutUnit position="center">
+                    <p:panel  style="border: 0px">
+                            <p:growl id="msgs" showDetail="true"/>
+                            <p:panel id="pnlPessoaFuncionarioCondomino">
+                                <h:panelGrid columns="4">
+                                    <p:outputLabel value="Nome: *"/>
+                                    <p:inputText  maxlength="50" value="#{managedBeanVisitante.pessoa.nome}"/>
+                                    <p:outputLabel value="Senha: "/>
+                                    <p:password  maxlength="50" value="#{managedBeanFuncionarioCondomino.pessoa.senha}"/>
+                                    <p:outputLabel value="RG: *"/>
+                                    <p:inputMask mask="99999999" value="#{managedBeanVisitante.pessoa.rg}"/>
+                                    <p:outputLabel value="Sobrenome: *"/>
+                                    <p:inputText  maxlength="50" value="#{managedBeanVisitante.pessoa.sobrenome}"/>
+                                    <p:outputLabel value="CPF: *"/>
+                                    <p:inputMask mask="99999999999" value="#{managedBeanVisitante.pessoa.cpf}"/>
+                                    <p:outputLabel for="bloco" value="Bloco:"/>
+                                    <p:selectOneMenu id="bloco" value="#{managedBeanVisitante.pessoa.bloco}">
+                                        <f:selectItem itemLabel="--Selecione--" itemValue=""/>
+                                        <f:selectItem itemLabel="AA" itemValue="AA"/>
+                                        <f:selectItem itemLabel="AB" itemValue="AB"/>
+                                        <f:selectItem itemLabel="AC" itemValue="AC"/>
+                                        <f:selectItem itemLabel="AD" itemValue="AD"/>
+                                        <f:selectItem itemLabel="BA" itemValue="BA"/>
+                                        <f:selectItem itemLabel="BB" itemValue="BB"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="apto" value="Apto:"/>
+                                    <p:selectOneMenu id="apto" value="#{managedBeanVisitante.pessoa.apartamento}">
+                                        <f:selectItem itemLabel="--Selecione--" itemValue=""/>
+                                        <f:selectItem itemLabel="1" itemValue="1"/>
+                                        <f:selectItem itemLabel="2" itemValue="2"/>
+                                        <f:selectItem itemLabel="3" itemValue="3"/>
+                                        <f:selectItem itemLabel="4" itemValue="4"/>
+                                        <f:selectItem itemLabel="5" itemValue="5"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Tel.Residencial:"/>
+                                    <p:inputMask mask="(99)9999-9999" value="#{managedBeanVisitante.pessoa.telefoneResidencial}"/>
+                                    <p:outputLabel value="Tel.Comercial:"/>
+                                    <p:inputMask mask="(99)9999-9999" value="#{managedBeanVisitante.pessoa.telefoneComercial}"/>
+                                </h:panelGrid>
+                                <p:spacer height="10px"/>
+                                <h:panelGrid columns="2">
+                                    <p:commandButton rendered="#{not empty acessoEscrita}"  value="Salvar"
+                                                     action="#{managedBeanVisitante.submitAcao()}" ajax="false">
+                                        <f:param name="idParam" value="#{managedBeanVisitante.pessoa.id}"></f:param>
+                                        <f:param name="acaoParam" value="4"></f:param>
+                                    </p:commandButton>
+                                    <p:button outcome="lista-visitante.xhtml" value="Cancelar"/>
+                                </h:panelGrid>
+                                
+                          <h:panelGrid columns="4" cellpadding="5">
+                          <p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}" update="photo" />
+        				  <p:commandButton rendered="#{not empty acessoEscrita}"  type="button" value="Capturar" onclick="PF('pc').capture()"/>
+       	    			  <p:outputPanel id="photo">
+       	    			  
+          				  <p:graphicImage name="C:/Users/REX/Desktop/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/PjSisac/resources/visitante/#{photoCamView.filename}.jpg" />
+          				  <p:outputLabel value="#{photoCamView.filename}.jpg" />
+          				  
+        				  </p:outputPanel>
+        				  <p:graphicImage url="C:\Users\\REX\Desktop\6753012.jpg"/>
+						  </h:panelGrid>
+                                
+                                
+                            </p:panel>
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+           </h:form>     
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioAgendamento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a263cddd-d814-4279-b574-47b7e76369b5">
+	<property name="ireport.zoom" value="1.7715610000000261"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fazenda" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="conn" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="de" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ate" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dir_image" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="pessoa.nome" class="java.lang.String"/>
+	<field name="dataUso" class="java.util.Date"/>
+	<field name="pessoa.email" class="java.lang.String"/>
+	<field name="tipo" class="java.lang.String"/>
+	<field name="pessoa.bloco" class="java.lang.String"/>
+	<field name="pessoa.apartamento" class="java.lang.Long"/>
+	<field name="pessoa.id" class="java.lang.Long"/>
+	<group name="area" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{pessoa.id}]]></groupExpression>
+		<groupHeader>
+			<band height="39">
+				<staticText>
+					<reportElement uuid="6d9228b9-1335-4610-a71a-04fa9ce31856" x="158" y="22" width="132" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Apto / Bloco]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="6d9228b9-1335-4610-a71a-04fa9ce31856" x="23" y="23" width="112" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="5d71616a-120d-4153-8d82-37b358c6c36c" x="12" y="21" width="1" height="17"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<line>
+					<reportElement uuid="5d71616a-120d-4153-8d82-37b358c6c36c" x="12" y="37" width="543" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement uuid="ca876134-fc10-457a-941a-5d2d1f94731f" x="302" y="22" width="122" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Condômino]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="112f0aa0-67c6-4723-bb4a-d03c4501fba1" x="450" y="22" width="100" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Serif" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Email Enviado]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="fa5cf67a-2799-4961-9897-4a1ef0a8e8c6" x="0" y="21" width="555" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.25"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="69">
+			<staticText>
+				<reportElement uuid="472432b3-8a86-4e3c-a923-44b6eec9fd00" mode="Opaque" x="0" y="5" width="555" height="21" backcolor="#EFEFEF"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Agendamentos
+]]></text>
+			</staticText>
+			<textField pattern="EEEEE&apos;, &apos; dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement uuid="d80c457a-e799-4fcc-ae91-2fb7fd614198" x="0" y="32" width="238" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="ec237009-7083-4d18-9185-e69deb78d0bc" x="494" y="32" width="60" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="bb6a2246-8846-4dda-9a10-f3be42cfc242" x="429" y="32" width="55" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{de}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="47c3be64-72a5-4a2f-bcb6-65295e4a0b7f" x="389" y="32" width="40" height="16">
+					<printWhenExpression><![CDATA[$P{de} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[Período:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="68029a51-c8bb-4e3f-a538-57534f176635" x="484" y="32" width="10" height="16">
+					<printWhenExpression><![CDATA[$P{de} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="9"/>
+				</textElement>
+				<text><![CDATA[a]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a1c3565-5e0c-45a0-b81f-77c761d96c78" mode="Opaque" x="0" y="50" width="555" height="19" backcolor="#EFEFEF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Serif" size="13"/>
+				</textElement>
+				<text><![CDATA[Sisac Garden condomínio]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="18">
+			<textField pattern="###0.0">
+				<reportElement uuid="88f0cdeb-ebd3-452e-88da-ce85e0c8d2a9" x="158" y="0" width="132" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa.bloco}+ " / " + $F{pessoa.apartamento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="88f0cdeb-ebd3-452e-88da-ce85e0c8d2a9" x="23" y="0" width="112" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataUso}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement uuid="b2ce6a4e-db36-4958-86c7-630256c4beb1" x="302" y="0" width="122" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa.nome}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.0">
+				<reportElement uuid="399c5eb4-fac6-41b5-9191-70460e18ed57" x="450" y="0" width="100" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pessoa.email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26">
+			<line>
+				<reportElement uuid="5d71616a-120d-4153-8d82-37b358c6c36c" x="0" y="11" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.25"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="1081f52e-e3de-4c25-8f1f-9ef8f2cae3a2" x="450" y="11" width="80" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="c6752431-cf0b-40c9-a811-512096865f1c" x="530" y="11" width="24" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

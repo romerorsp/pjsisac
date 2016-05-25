@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:view encoding="ISO-8859-1">
+        <h:head>
+            <link href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+            <title>:SISAC:</title>
+        </h:head>
+        <h:body>
+            <h:form id="frmPessoaVisitante">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" resizable="false" closable="false">
+                   <table style="text-align: right; width: 100%" cellpadding="0"
+                               cellspacing="0">
+                            <tr>
+                                <td>
+                                    <p:outputLabel value=""/>
+                                        <p:commandLink
+                                            style="color: #6495ED; font-weight: bold; font-size: 16px; font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;"
+                                            value="SAIR" ajax="false"
+                                            action="#{managedBeanFuncionarioCondomino.desautenticar}" />
+                                    </td>
+                            </tr>
+                        </table>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" resizable="false" size="250">
+                    <p:menu>
+                        <p:menuitem value="Funcion&aacute;rio/Cond&ocirc;mino" outcome="lista-funcionario-condomino.xhtml"/>
+                        <p:menuitem value="Visitante" outcome="lista-visitante.xhtml"/>
+                        <p:menuitem value="Ve&iacute;culo" outcome="lista-veiculo.xhtml"/>
+                         <p:menuitem value="Reserva" outcome="lista-reserva.xhtml"/>
+                         <p:menuitem value="Edital" outcome="lista-edital.xhtml"/>
+                         <p:menuitem value="Ocorr&ecirc;ncia" outcome="lista-ocorrencia.xhtml"/>
+                    </p:menu>
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <p:panel  style="border: 0px">
+                            <p:panel id="pnlPessoaFuncionarioCondomino">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel value="Nome: "/>
+                                    <p:inputText value="#{managedBeanFuncionarioCondomino.pessoa.nome}"/>
+                                    <p:outputLabel value="RG: "/>
+                                    <p:inputText value="#{managedBeanFuncionarioCondomino.pessoa.sobrenome}"/>
+                                    <p:outputLabel value="CPF: "/>
+                                    <p:inputText value="#{managedBeanFuncionarioCondomino.pessoa.cpf}"/>
+                                    <p:outputLabel for="bloco" value="Bloco:"/>
+                                    <p:selectOneMenu id="bloco" value="#{managedBeanFuncionarioCondomino.pessoa.bloco}">
+                                        <f:selectItem itemLabel="--Selecione--" itemValue=""/>
+                                        <f:selectItem itemLabel="AA" itemValue="AA"/>
+                                        <f:selectItem itemLabel="AB" itemValue="AB"/>
+                                        <f:selectItem itemLabel="AC" itemValue="AC"/>
+                                        <f:selectItem itemLabel="AD" itemValue="AD"/>
+                                        <f:selectItem itemLabel="BA" itemValue="BA"/>
+                                        <f:selectItem itemLabel="BB" itemValue="BB"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel for="apto" value="Apto:"/>
+                                    <p:selectOneMenu id="apto" value="#{managedBeanFuncionarioCondomino.pessoa.apartamento}">
+                                        <f:selectItem itemLabel="--Selecione--" itemValue=""/>
+                                        <f:selectItem itemLabel="1" itemValue="1"/>
+                                        <f:selectItem itemLabel="2" itemValue="2"/>
+                                        <f:selectItem itemLabel="3" itemValue="3"/>
+                                        <f:selectItem itemLabel="4" itemValue="4"/>
+                                        <f:selectItem itemLabel="5" itemValue="5"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Tipo:"/>
+                                    <p:selectOneMenu value="#{managedBeanFuncionarioCondomino.pessoa.tipoPessoa}">
+                                        <f:selectItem itemLabel="FUNCIONARIO" itemValue="FUNCIONARIO" />
+                                        <f:selectItem itemLabel="CONDOMINO" itemValue="CONDOMINO" />
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+                                <p:spacer height="10px"/>
+                                <h:panelGrid columns="2">
+                                    <p:commandButton rendered="#{not empty acessoEscrita}"  value="OK"
+                                                     action="#{managedBeanFuncionarioCondomino.submitAcao()}" ajax="false">
+                                        <f:param name="acaoParam" value="6"></f:param>
+                                    </p:commandButton>
+                                    <p:button outcome="lista-funcionario-condomino.xhtml" value="Cancelar"/>
+                                </h:panelGrid>
+                            </p:panel>
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+           </h:form>     
+        </h:body>
+    </f:view>
+</html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:view encoding="ISO-8859-1">
+        <h:head>
+            <link href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+            <title>:SISAC:</title>
+        </h:head>
+        <h:body>
+            <h:form id="frmVeiculo">
+                <p:layout fullPage="true">
+                    <p:layoutUnit id="layoutUnitNorth" position="north" resizable="false" closable="false">
+<table style="text-align: right; width: 100%" cellpadding="0"
+                               cellspacing="0">
+                            <tr>
+                                <td>
+                                    <p:outputLabel value=""/>
+                                        <p:commandLink
+                                            style="color: #6495ED; font-weight: bold; font-size: 16px; font-family: Lucida Grande, Lucida Sans, Arial, sans-serif;"
+                                            value="SAIR" ajax="false"
+                                            action="#{managedBeanFuncionarioCondomino.desautenticar}" />
+                                    </td>
+                            </tr>
+                        </table>
+                    </p:layoutUnit>
+                    <p:layoutUnit position="west" resizable="false" size="250">
+                        <p:menu>
+                            <p:menuitem value="Funcion&aacute;rio/Cond&ocirc;mino" outcome="lista-funcionario-condomino.xhtml"/>
+                            <p:menuitem value="Visitante" outcome="lista-visitante.xhtml"/>
+                            <p:menuitem value="Ve&iacute;culo" outcome="lista-veiculo.xhtml"/>
+                             <p:menuitem value="Reserva" outcome="lista-reserva.xhtml"/>
+                             <p:menuitem value="Edital" outcome="lista-edital.xhtml"/>
+                             <p:menuitem value="Ocorr&ecirc;ncia" outcome="lista-ocorrencia.xhtml"/>
+                        </p:menu>
+                    </p:layoutUnit>
+                    <p:layoutUnit position="center">
+                        <p:panel  style="border: 0px">
+                            <p:growl id="msgs" showDetail="true"/>
+                            <p:dataTable id="dtVeiculo" emptyMessage="Não existe veiculos registrados" paginator="true" var="veiculoItem" value="#{managedBeanVeiculo.veiculos}">
+                                <p:column headerText="Marca" width="10%">
+                                    <h:outputText value="#{veiculoItem.marca}" />
+                                </p:column>
+                                <p:column headerText="Modelo" width="10%">
+                                    <h:outputText value="#{veiculoItem.modelo}" />
+                                </p:column>
+                                <p:column headerText="Placa" >
+                                    <h:outputText value="#{veiculoItem.placa}" />
+                                </p:column>
+                                <p:column headerText="Nome Prop.">
+                                    <h:outputText value="#{veiculoItem.pessoa.nome}" />
+                                </p:column>
+                                <p:column headerText="Ano" width="5%">
+                                    <h:outputText value="#{veiculoItem.ano}" />
+                                </p:column>
+                                <p:column headerText="Bloco" width="5%">
+                                    <h:outputText value="#{veiculoItem.pessoa.bloco}" />
+                                </p:column>
+                                <p:column headerText="Apartamento">
+                                    <h:outputText value="#{veiculoItem.pessoa.apartamento}" />
+                                </p:column>
+                                <p:column style="text-align: center" headerText="Ação">
+                                    <p:commandButton rendered="#{not empty acessoEscrita}"  id="cmdAlterar" value="Alterar"
+                                                     action="#{managedBeanVeiculo.submitAcao()}" ajax="false">
+                                        <f:param name="idParam" value="#{veiculoItem.id}"></f:param>
+                                        <f:param name="acaoParam" value="2"></f:param>
+                                    </p:commandButton>
+                                </p:column>
+                                <p:column style="text-align: center" headerText="Ação">
+                                    <p:commandButton rendered="#{not empty acessoEscrita}"  style="color: red" id="cmdExcluir" value="Excluir"
+                                                     action="#{managedBeanVeiculo.submitAcao()}" ajax="false">
+                                        <f:param name="idParam" value="#{veiculoItem.id}"></f:param>
+                                        <f:param name="acaoParam" value="1"></f:param>
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                            <p:spacer height="10px"/>
+                            <h:panelGrid columns="2">
+                                <p:commandButton rendered="#{not empty acessoEscrita}"  value="Incluir"
+                                                 action="#{managedBeanVeiculo.submitAcao()}" ajax="false">
+                                    <f:param name="idParam" value="0"></f:param>
+                                    <f:param name="acaoParam" value="3"></f:param>
+                                </p:commandButton>
+                                <p:commandButton value="Pesquisar" 
+                                                 action="#{managedBeanVeiculo.submitAcao()}" ajax="false">
+                                    <f:param name="acaoParam" value="5"></f:param>
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form>     
+        </h:body>
+    </f:view>
+</html>

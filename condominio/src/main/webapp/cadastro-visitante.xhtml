@@ -89,7 +89,7 @@
                                 </h:panelGrid>
                                 
                           <h:panelGrid columns="4" cellpadding="5">
-                          <p:photoCam widgetVar="pc" listener="#{photoCamView.oncapture}" update="photo" />
+                          <p:photoCam widgetVar="pc" listener="#{#{managedBeanVisitante.oncapture}" update="photo" />
         				  <p:commandButton rendered="#{not empty acessoEscrita}"  type="button" value="Capturar" onclick="PF('pc').capture()"/>
        	    			  <p:outputPanel id="photo">
        	    			  

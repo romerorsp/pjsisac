@@ -5,13 +5,20 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.sisac.dao.DAOPessoa;
 import br.com.sisac.model.Pessoa;
 
+
+@Named(value="managedBeanFuncionarioCondomino")
+@Scope(value="session")
 public class ManagedBeanFuncionarioCondomino {
 
-	private DAOPessoa daoPessoa;
+	private @Autowired DAOPessoa daoPessoa;
 	private List<Pessoa> pessoas;
 	private Pessoa pessoa;
 

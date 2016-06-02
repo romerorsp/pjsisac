@@ -49,13 +49,13 @@
 	<!-- Data Source Declaration -->
 	<bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
-		<property name="driverClass" value="${datasource.driver}" />
-		<property name="jdbcUrl" value="${datasource.connection}" />
-		<property name="user" value="${datasource.user}" />
-		<property name="password" value="${datasource.pwd}" />
-		<property name="maxPoolSize" value="${datasource.poolsize.max}" />
-		<property name="maxStatements" value="${datasource.statements.max}" />
-		<property name="minPoolSize" value="${datasource.poolsize.min}" />
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/bdsisac" />
+		<property name="user" value="sisac" />
+		<property name="password" value="p4ssword" />
+		<property name="maxPoolSize" value="2" />
+		<property name="maxStatements" value="1" />
+		<property name="minPoolSize" value="1" />
 	</bean>
 
 	<!-- Session Factory Declaration -->
@@ -72,23 +72,23 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
             	<prop key="hibernate.hbm2ddl.auto">update</prop>
             	<prop key="hbm2ddl.auto">update</prop>
             	<prop key="hibernate.dbcp.maxActive">10</prop> 
 				<prop key="hibernate.dbcp.whenExhaustedAction">1</prop> 
-				<prop key="hibernate.dbcp.maxWait">20000</prop> 
+				<prop key="hibernate.dbcp.maxWait">2000</prop> 
 				<prop key="hibernate.dbcp.maxIdle">10</prop> 
 				
 				<!-- prepared statement cache--> 
-				<prop key="hibernate.dbcp.ps.maxActive">10</prop> 
-				<prop key="hibernate.dbcp.ps.whenExhaustedAction">1</prop> 
-				<prop key="hibernate.dbcp.ps.maxWait">20000</prop> 
-				<prop key="hibernate.dbcp.ps.maxIdle">10</prop> 
+				<prop key="dbcp.ps.maxActive">10</prop> 
+				<prop key="dbcp.ps.whenExhaustedAction">1</prop> 
+				<prop key="dbcp.ps.maxWait">2000</prop> 
+				<prop key="dbcp.ps.maxIdle">10</prop> 
 				
 				<!-- optional query to validate pooled connections:--> 
-				<prop key="hibernate.dbcp.validationQuery">select 1</prop> 
+				<prop key="hibernate.dbcp.validationQuery">SELECT 1</prop> 
 				<prop key="hibernate.dbcp.testOnBorrow">true</prop> 
 				<prop key="hibernate.dbcp.testOnReturn">true</prop> 
 			</props>

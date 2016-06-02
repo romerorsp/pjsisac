@@ -7,16 +7,22 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.sisac.dao.DAOOcorrencia;
 import br.com.sisac.dao.DAOPessoa;
 import br.com.sisac.model.Ocorrencia;
 import br.com.sisac.model.Pessoa;
 
+@Named
+@Scope(value="session")
 public class ManagedBeanOcorrencia {
 
-    private DAOOcorrencia daoOcorrencia;
-    private DAOPessoa daoPessoa;
+    private @Autowired DAOOcorrencia daoOcorrencia;
+    private @Autowired DAOPessoa daoPessoa;
     private List<Ocorrencia> ocorrencias;
     private List<Pessoa> pessoas;
     private Ocorrencia ocorrencia;

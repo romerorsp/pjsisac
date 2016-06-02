@@ -54,11 +54,11 @@
 		</dependency>
 
 		<!-- http://mvnrepository.com/artifact/asm/asm -->
-		<dependency>
-			<groupId>asm</groupId>
-			<artifactId>asm</artifactId>
-			<version>3.1</version>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>asm</groupId> -->
+		<!-- <artifactId>asm</artifactId> -->
+		<!-- <version>3.1</version> -->
+		<!-- </dependency> -->
 
 		<!-- http://mvnrepository.com/artifact/org.bouncycastle/bcmail-jdk14 -->
 		<dependency>
@@ -312,11 +312,25 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
+		<!-- http://mvnrepository.com/artifact/org.springframework/spring-web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-asm</artifactId>
+			<artifactId>spring-web</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/org.springframework/spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-asm</artifactId> -->
+		<!-- <version>${springframework.version}</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -360,12 +374,6 @@
 			<version>${springframework.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${springframework.version}</version>
-		</dependency>
-
 		<!-- http://mvnrepository.com/artifact/xml-apis/xml-apis -->
 		<dependency>
 			<groupId>xml-apis</groupId>
@@ -384,7 +392,58 @@
 			<artifactId>redmond</artifactId>
 			<version>1.0.10</version>
 		</dependency>
+		<!-- http://mvnrepository.com/artifact/javax.inject/javax.inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.39</version>
+		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>mysql</id>
+
+			<properties>
+				<datasource.connection>jdbc:mysql://localhost:3306/bdsisac</datasource.connection>
+				<datasource.driver>com.mysql.jdbc.Driver</datasource.driver>
+				<datasource.user>sisac</datasource.user>
+				<datasource.pwd>p4ssword</datasource.pwd>
+				<datasource.poolsize.max>2</datasource.poolsize.max>
+				<datasource.poolsize.min>1</datasource.poolsize.min>
+				<datasource.statements.max>1</datasource.statements.max>
+				<hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
+			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.6</version>
+						<configuration>
+							<webResources>
+								<resource>
+									<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+									<filtering>true</filtering>
+									<targetPath>WEB-INF</targetPath>
+									<includes>
+										<include>**/*.*</include>
+									</includes>
+								</resource>
+							</webResources>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<build>
 		<finalName>condominio</finalName>
@@ -399,7 +458,7 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>

@@ -1,24 +1,25 @@
 package br.com.sisac.view;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.imageio.stream.FileImageOutputStream;
+
+import javax.inject.Named;
 
 import org.primefaces.event.CaptureEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.sisac.dao.DAOPessoa;
 import br.com.sisac.model.Pessoa;
 
+@Named
+@Scope(value="session")
 public class ManagedBeanVisitante {
 
-    private DAOPessoa daoPessoa;
+    private @Autowired DAOPessoa daoPessoa;
     private List<Pessoa> pessoas;
     private Pessoa pessoa;
 
@@ -131,10 +132,7 @@ public class ManagedBeanVisitante {
                 if (!validar()) {
                     return "cadastro-visitante.xhtml";
                 }
-
-                String mensagem = (pessoa.getId() != 0L)
-                        ? "Alteração realizada com sucesso!"
-                        : "Cadastrado com sucesso!";
+                String mensagem = (pessoa.getId() != 0L) ? "Alteração realizada com sucesso!": "Cadastrado com sucesso!";
 
                 pessoa.setTipoPessoa(Pessoa.TIPO_PESSOA_VISITANTE);
                 daoPessoa.atualizar(pessoa);
@@ -150,42 +148,7 @@ public class ManagedBeanVisitante {
         }
     }
     
-    private String getRandomImageName() {
-        int i = (int) (Math.random() * 10000000);
-         
-        return String.valueOf(i);
-    }
-    
     public void oncapture(CaptureEvent captureEvent) {
-    	String filename = getRandomImageName();
-        byte[] data = captureEvent.getData();
- 
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        
-        String newFileName = externalContext.getRealPath("") + "resources" + File.separator + "visitante" + File.separator + filename + ".jpg";
-        pessoa.setImagem(filename);
-         System.out.println("Caminho " + newFileName);
-        FileImageOutputStream imageOutput;
-        try {
-            imageOutput = new FileImageOutputStream(new File(newFileName));
-            imageOutput.write(data, 0, data.length);
-            imageOutput.close();
-        }
-        catch(IOException e) {
-            throw new FacesException("Erro ao Capiturar imagem.", e);
-        }
+        pessoa.setImagem(captureEvent.getData());
     }
-    
-    /*
-     * String newFileName = externalContext.getRealPath("") + "resources" + File.separator + "visitante" + File.separator + pessoa.getImagem();
-     *  try {
-            imageOutput = new FileImageInputStream(new File(newFileName));
-            imageOutput.read(data, 0, data.length);
-            imageOutput.close();
-        }
-        catch(IOException e) {
-            throw new FacesException("Erro ao Capiturar imagem.", e);
-        }
-     * 
-     */
 }

@@ -8,82 +8,82 @@
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
     </application>
 
-    <managed-bean>
-        <managed-bean-name>managedBeanFuncionarioCondomino</managed-bean-name>
-        <managed-bean-class>br.com.sisac.view.ManagedBeanFuncionarioCondomino</managed-bean-class>
+<!--     <managed-bean> -->
+<!--         <managed-bean-name>managedBeanFuncionarioCondomino</managed-bean-name> -->
+<!--         <managed-bean-class>br.com.sisac.view.ManagedBeanFuncionarioCondomino</managed-bean-class> -->
     
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>daoPessoa</property-name>
-            <value>#{DAOPessoa}</value>
-        </managed-property>
-    </managed-bean>
+<!--         <managed-bean-scope>session</managed-bean-scope> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoPessoa</property-name> -->
+<!--             <value>#{DAOPessoa}</value> -->
+<!--         </managed-property> -->
+<!--     </managed-bean> -->
 
-    <managed-bean>
-        <managed-bean-name>managedBeanVisitante</managed-bean-name>
-        <managed-bean-class>br.com.sisac.view.ManagedBeanVisitante</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>daoPessoa</property-name>
-            <value>#{DAOPessoa}</value>
-        </managed-property>
-    </managed-bean>
+<!--     <managed-bean> -->
+<!--         <managed-bean-name>managedBeanVisitante</managed-bean-name> -->
+<!--         <managed-bean-class>br.com.sisac.view.ManagedBeanVisitante</managed-bean-class> -->
+<!--         <managed-bean-scope>session</managed-bean-scope> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoPessoa</property-name> -->
+<!--             <value>#{DAOPessoa}</value> -->
+<!--         </managed-property> -->
+<!--     </managed-bean> -->
 
-    <managed-bean>
-        <managed-bean-name>managedBeanVeiculo</managed-bean-name>
-        <managed-bean-class>br.com.sisac.view.ManagedBeanVeiculo</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>daoVeiculo</property-name>
-            <value>#{DAOVeiculo}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>daoPessoa</property-name>
-            <value>#{DAOPessoa}</value>
-        </managed-property>
-    </managed-bean>
+<!--     <managed-bean> -->
+<!--         <managed-bean-name>managedBeanVeiculo</managed-bean-name> -->
+<!--         <managed-bean-class>br.com.sisac.view.ManagedBeanVeiculo</managed-bean-class> -->
+<!--         <managed-bean-scope>session</managed-bean-scope> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoVeiculo</property-name> -->
+<!--             <value>#{DAOVeiculo}</value> -->
+<!--         </managed-property> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoPessoa</property-name> -->
+<!--             <value>#{DAOPessoa}</value> -->
+<!--         </managed-property> -->
+<!--     </managed-bean> -->
 
-	<managed-bean>
-        <managed-bean-name>managedBeanReserva</managed-bean-name>
-        <managed-bean-class>br.com.sisac.view.ManagedBeanReserva</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>daoReserva</property-name>
-            <value>#{DAOReserva}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>daoPessoa</property-name>
-            <value>#{DAOPessoa}</value>
-        </managed-property>
-	</managed-bean>
+<!-- 	<managed-bean> -->
+<!--         <managed-bean-name>managedBeanReserva</managed-bean-name> -->
+<!--         <managed-bean-class>br.com.sisac.view.ManagedBeanReserva</managed-bean-class> -->
+<!--         <managed-bean-scope>session</managed-bean-scope> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoReserva</property-name> -->
+<!--             <value>#{DAOReserva}</value> -->
+<!--         </managed-property> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoPessoa</property-name> -->
+<!--             <value>#{DAOPessoa}</value> -->
+<!--         </managed-property> -->
+<!-- 	</managed-bean> -->
 
-    <managed-bean>
-        <managed-bean-name>managedBeanOcorrencia</managed-bean-name>
-        <managed-bean-class>br.com.sisac.view.ManagedBeanOcorrencia</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>daoOcorrencia</property-name>
-            <value>#{DAOOcorrencia}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>daoPessoa</property-name>
-            <value>#{DAOPessoa}</value>
-        </managed-property>
-    </managed-bean>
+<!--     <managed-bean> -->
+<!--         <managed-bean-name>managedBeanOcorrencia</managed-bean-name> -->
+<!--         <managed-bean-class>br.com.sisac.view.ManagedBeanOcorrencia</managed-bean-class> -->
+<!--         <managed-bean-scope>session</managed-bean-scope> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoOcorrencia</property-name> -->
+<!--             <value>#{DAOOcorrencia}</value> -->
+<!--         </managed-property> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoPessoa</property-name> -->
+<!--             <value>#{DAOPessoa}</value> -->
+<!--         </managed-property> -->
+<!--     </managed-bean> -->
 
-    <managed-bean>
-        <managed-bean-name>managedBeanEdital</managed-bean-name>
-        <managed-bean-class>br.com.sisac.view.ManagedBeanEdital</managed-bean-class>
-        <managed-bean-scope>request</managed-bean-scope>
-        <managed-property>
-            <property-name>daoPessoa</property-name>
-            <value>#{DAOPessoa}</value>
-        </managed-property>
-        <managed-property>
-            <property-name>daoEdital</property-name>
-            <value>#{DAOEdital}</value>
-        </managed-property>
-    </managed-bean>
+<!--     <managed-bean> -->
+<!--         <managed-bean-name>managedBeanEdital</managed-bean-name> -->
+<!--         <managed-bean-class>br.com.sisac.view.ManagedBeanEdital</managed-bean-class> -->
+<!--         <managed-bean-scope>session</managed-bean-scope> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoPessoa</property-name> -->
+<!--             <value>#{DAOPessoa}</value> -->
+<!--         </managed-property> -->
+<!--         <managed-property> -->
+<!--             <property-name>daoEdital</property-name> -->
+<!--             <value>#{DAOEdital}</value> -->
+<!--         </managed-property> -->
+<!--     </managed-bean> -->
 
     <converter>
         <converter-id>upperCaseConverter</converter-id>

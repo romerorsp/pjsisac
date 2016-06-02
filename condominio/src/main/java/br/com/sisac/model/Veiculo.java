@@ -11,19 +11,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
 @Table(name = "tb_veiculo")
-@SequenceGenerator(name = "sq_veiculo", sequenceName = "sq_veiculo")
+//@SequenceGenerator(name = "sq_veiculo", sequenceName = "sq_veiculo")
 public class Veiculo implements Serializable {
    
 	private static final long serialVersionUID = -3619207234272928891L;
 
+//	@Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_veiculo")
 	@Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_veiculo")
+    @GenericGenerator(
+        name = "table", 
+        strategy = "enhanced-table", 
+        parameters = {
+            @org.hibernate.annotations.Parameter(
+                name = "table_name", 
+                value = "sequence_table"
+            )
+    })
+    @GeneratedValue(generator = "table", strategy=GenerationType.TABLE)
     @Column(name = "id", unique = true, nullable = false)
     private long id;
     

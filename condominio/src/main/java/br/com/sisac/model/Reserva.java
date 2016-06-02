@@ -11,22 +11,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "tb_reserva")
-@SequenceGenerator(name = "sq_reserva", sequenceName = "sq_reserva")
+//@SequenceGenerator(name = "sq_reserva", sequenceName = "sq_reserva")
 public class Reserva {
     
     public Reserva() {
         this.pessoa = new Pessoa();
     }
     
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_reserva")
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_reserva")
+    @GenericGenerator(
+        name = "table", 
+        strategy = "enhanced-table", 
+        parameters = {
+            @org.hibernate.annotations.Parameter(
+                name = "table_name", 
+                value = "sequence_table"
+            )
+    })
+    @GeneratedValue(generator = "table", strategy=GenerationType.TABLE)
     @Column(name = "id", unique = true, nullable = false)
     private long id;
 

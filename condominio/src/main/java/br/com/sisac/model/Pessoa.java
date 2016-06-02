@@ -13,35 +13,49 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "tb_pessoa")
-@SequenceGenerator(name = "sq_pessoa", sequenceName = "sq_pessoa")
+//@SequenceGenerator(name = "sq_pessoa", sequenceName = "sq_pessoa")
 public class Pessoa implements Serializable {
 	private static final long serialVersionUID = 5908427021537898784L;
 	public static String TIPO_PESSOA_SINDICO = "SINDICO";
 	public static String TIPO_PESSOA_FUNCIONARIO = "FUNCIONÁRIO";
     public static final String TIPO_PESSOA_CONDOMINO = "CONDÔMINO";
     public static final String TIPO_PESSOA_VISITANTE = "VISITANTE";
+
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO, generator = "sq_pessoa")
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sq_pessoa")
+    @GenericGenerator(
+        name = "table", 
+        strategy = "enhanced-table", 
+        parameters = {
+            @org.hibernate.annotations.Parameter(
+                name = "table_name", 
+                value = "sequence_table"
+            )
+    })
+    @GeneratedValue(generator = "table", strategy=GenerationType.TABLE)
     @Column(name = "id", unique = true, nullable = false)
     private long id;
     
     @Column(nullable = false)
     private String nome;
-    
-    
+
     private String sobrenome;
     
     @Column(name = "email")
     private String email;
     
+    @Lob
     @Column(name = "imagem")
-    private String imagem;
+    private byte[] imagem;
 
     
     private String rg;
@@ -208,11 +222,11 @@ public class Pessoa implements Serializable {
 		this.email = email;
 	}
 
-	public String getImagem() {
+	public byte[] getImagem() {
 		return imagem;
 	}
 
-	public void setImagem(String imagem) {
+	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
 	

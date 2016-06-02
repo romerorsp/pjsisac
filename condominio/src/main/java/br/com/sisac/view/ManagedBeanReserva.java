@@ -13,10 +13,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.sisac.dao.DAOPessoa;
 import br.com.sisac.dao.DAOReserva;
@@ -29,11 +33,13 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.export.JRPdfExporter;
 
+@Named
+@Scope(value="session")
 @SuppressWarnings("deprecation")
 public class ManagedBeanReserva extends Relatorio{
 
-    private DAOReserva daoReserva;
-    private DAOPessoa daoPessoa;
+    private @Autowired DAOReserva daoReserva;
+    private @Autowired DAOPessoa daoPessoa;
     private List<Reserva> reservas;
     private List<Pessoa> pessoas;
     private Reserva reserva;

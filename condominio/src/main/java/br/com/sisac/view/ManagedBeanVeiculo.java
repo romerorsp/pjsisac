@@ -7,16 +7,22 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.sisac.dao.DAOPessoa;
 import br.com.sisac.dao.DAOVeiculo;
 import br.com.sisac.model.Pessoa;
 import br.com.sisac.model.Veiculo;
 
+@Named
+@Scope(value="session")
 public class ManagedBeanVeiculo {
 
-    private DAOVeiculo daoVeiculo;
-    private DAOPessoa daoPessoa;
+    private @Autowired DAOVeiculo daoVeiculo;
+    private @Autowired DAOPessoa daoPessoa;
     private List<Veiculo> veiculos;
     private List<Pessoa> pessoas;
     private Veiculo veiculo;

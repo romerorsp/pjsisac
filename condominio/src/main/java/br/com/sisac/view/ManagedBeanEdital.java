@@ -7,15 +7,21 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 
 import br.com.sisac.dao.DAOEdital;
 import br.com.sisac.dao.DAOPessoa;
 import br.com.sisac.model.Edital;
 import br.com.sisac.model.Pessoa;
 
+@Named
+@Scope(value="session")
 public class ManagedBeanEdital {
-    private DAOEdital daoEdital;
-    private DAOPessoa daoPessoa;
+    private @Autowired DAOEdital daoEdital;
+    private @Autowired DAOPessoa daoPessoa;
     private List<Edital> editals;
     private List<Pessoa> pessoas;
     private Edital edital;

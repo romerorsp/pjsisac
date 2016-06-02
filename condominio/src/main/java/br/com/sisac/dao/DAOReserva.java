@@ -4,17 +4,18 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.sisac.model.Reserva;
 
-@Service
+@Repository
 @Transactional(readOnly = true)
 @SuppressWarnings("unchecked")
 public class DAOReserva {
 
-    private SessionFactory sessionFactory;
+    private @Autowired SessionFactory sessionFactory;
     
     @Transactional(readOnly = false)
     public void atualizar(Reserva reserva) {

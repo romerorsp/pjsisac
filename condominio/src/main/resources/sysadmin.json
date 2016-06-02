@@ -1,0 +1,18 @@
+{
+	"nome": "system",
+	"sobrenome": "administrator",
+    "email": "sysadmin@mail.com",
+	"imagem": null,
+	"rg":"11.111.111-1",
+	"cpf": "123.456.789-00",
+	"bloco": "11",
+    "apartamento": "63",
+    "tipoPessoa": "administrator",
+    "telefoneResidencial": "+55 41 3210-6789",
+    "telefoneComercial": "+55 41 9876-5432",
+    "reservas": [],
+    "ocorrencias": [],
+    "editais": [],
+    "quantidadeVisita": 5,
+    "senha": "123456"
+}
